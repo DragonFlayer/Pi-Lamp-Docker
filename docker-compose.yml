@@ -1,0 +1,32 @@
+version: "3"
+services:
+  db:
+    image: linuxserver/mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: dbrootpassword
+    volumes:
+      - "./db:/config"
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+  db_pma:
+    image: phpmyadmin:latest
+    depends_on:
+      - db
+    environment:
+      MYSQL_ROOT_PASSWORD: dbrootpassword
+      PMA_USER: root
+      PMA_PASSWORD: pmapassword
+    ports:
+      - 8088:80
+    restart: unless-stopped
+  www:
+    depends_on:
+      - db
+    image: php:7.4-apache
+    volumes:
+      - "./www:/var/www/html"
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
