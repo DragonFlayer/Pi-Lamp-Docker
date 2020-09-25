@@ -25,7 +25,7 @@ services:
       - db
     image: php:7.4-apache
     volumes:
-      - "./www:/var/www/html"
+      - "./html:/var/www/html"
     ports:
       - 80:80
       - 443:443

@@ -50,5 +50,5 @@ Change these ports according to your needs.
 
 ## Volumes
 
-- `./www` will store your web application.
+- `./html` will store your web application.
 - `./db` will store your database setup.
