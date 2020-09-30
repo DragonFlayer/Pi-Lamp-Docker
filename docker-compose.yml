@@ -10,7 +10,7 @@ services:
       - 3306:3306
     restart: unless-stopped
   db_pma:
-    image: phpmyadmin:latest
+    image: phpmyadmin
     depends_on:
       - db
     environment:
@@ -21,12 +21,28 @@ services:
       - 8088:80
     restart: unless-stopped
   www:
+    image: php:7.4-apache
     depends_on:
       - db
-    image: php:7.4-apache
     volumes:
       - "./html:/var/www/html"
+      - "apache:/etc/apache2"
+      - "php:/usr/local/etc/php"
+      - "./cert:/etc/cert"
     ports:
       - 80:80
       - 443:443
     restart: unless-stopped
+volumes:
+  apache:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${WORKDIR}/apache
+  php:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${WORKDIR}/php
