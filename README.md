@@ -30,6 +30,8 @@ cd pi-lamp-docker/
 mv example.env .env
 //modify .env
 //modify docker-compose.yml file according to your configuration before starting
+mkdir apache
+mkdir php
 docker-compose up -d
 ```
 
