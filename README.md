@@ -1,4 +1,4 @@
-# pi-lamp-docker
+# Pi Lamp Docker
 A docker-compose for a Pi-friendly (armv7) LAMP Stack.
 
 ## Stack
